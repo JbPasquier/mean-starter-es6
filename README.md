@@ -9,5 +9,5 @@
 ## NodeJS
 
 ```bash
-nodemon --exec npm run start
+nodemon --exec npm start
 ```
