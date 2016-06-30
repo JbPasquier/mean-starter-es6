@@ -1,26 +1,27 @@
 {
-  "name": "mean-es6",
-  "version": "0.0.1",
-  "description": "Mean starter kit",
-  "main": "index.js",
-  "scripts": {
-    "start": "babel-node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "",
-    "express": "",
-    "jsonwebtoken": "",
-    "method-override": "",
-    "mongoose": "",
-    "morgan": "",
-    "cors": ""
-  },
-  "devDependencies": {
-    "babel-cli": "^6.9.0",
-    "babel-core": "^6.9.0",
-    "babel-preset-es2015": "^6.9.0"
-  }
+    "name": "mean-es6",
+    "version": "0.0.1",
+    "description": "Mean starter kit",
+    "main": "index.js",
+    "scripts": {
+        "start": "babel-node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "",
+        "cors": "",
+        "express": "",
+        "jsonwebtoken": "",
+        "method-override": "",
+        "mongoose": "",
+        "morgan": "",
+        "underscore": "^1.8.3"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.9.0",
+        "babel-core": "^6.9.0",
+        "babel-preset-es2015": "^6.9.0"
+    }
 }

@@ -1,12 +1,15 @@
+import express from 'express';
 import User from '../models/user.js';
 import Auth from '../middlewares/authorization.js';
 
 module.exports = (app) => {
 
-	app.get('/loggedin', Auth.hasAuthorization, (req, res, next) => {
-        res.sendStatus(200);
-	});
+    var user = new User();
 
-	app.post('/login', User.connect);
+    app.get('/loggedin', Auth.hasAuthorization, (req, res, next) => {
+        res.sendStatus(200);
+    });
+
+    app.post('/login', user.connect.bind(user));
 
 }

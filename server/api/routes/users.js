@@ -6,15 +6,17 @@ const userRouter = express.Router();
 
 module.exports = (app) => {
 
-	userRouter.get('/', Auth.isAdministrator, User.findAll);
+    var user = new User();
 
-	userRouter.get('/:id', Auth.isAdministrator, User.findById);
+    userRouter.get('/', user.findAll.bind(user));
 
-	userRouter.post('/', User.create);
+    userRouter.get('/:id', Auth.isAdministrator, user.findById.bind(user));
 
-	userRouter.put('/:id', Auth.isAdministrator, User.update);
+    userRouter.post('/', user.create.bind(user));
 
-	userRouter.delete('/:id', Auth.isAdministrator, User.delete);
+    userRouter.put('/:id', Auth.isAdministrator, user.update.bind(user));
+
+    userRouter.delete('/:id', Auth.isAdministrator, user.delete.bind(user));
 
     app.use('/users', userRouter);
 

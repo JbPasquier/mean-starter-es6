@@ -7,3 +7,7 @@
 ## Angular
 
 ## NodeJS
+
+```bash
+nodemon --exec npm run start
+```
