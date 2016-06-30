@@ -1,9 +1,3 @@
-body {
-    padding-top: 70px;
-}
-
-/* loader */
-
 .ng-cloak.cs-loader {
     display: block !important;
 }
@@ -139,7 +133,7 @@ body {
     background-color: #00b5ad;
 }
 .ui.teal.text {
-    colo: #00b5ad;
+    color: #00b5ad;
 }
 .ui.teal.header {
     color: #00b5ad !important;
