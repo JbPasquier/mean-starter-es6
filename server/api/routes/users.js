@@ -8,15 +8,15 @@ module.exports = (app) => {
 
     var user = new User();
 
-    userRouter.get('/', user.findAll.bind(user));
+    userRouter.get('/', Auth.isAdministrator, user.findAll);
 
-    userRouter.get('/:id', Auth.isAdministrator, user.findById.bind(user));
+    userRouter.get('/:id', Auth.isAdministrator, user.findById);
 
-    userRouter.post('/', user.create.bind(user));
+    userRouter.post('/', user.create);
 
-    userRouter.put('/:id', Auth.isAdministrator, user.update.bind(user));
+    userRouter.put('/:id', Auth.isAdministrator, user.update);
 
-    userRouter.delete('/:id', Auth.isAdministrator, user.delete.bind(user));
+    userRouter.delete('/:id', Auth.isAdministrator, user.delete);
 
     app.use('/users', userRouter);
 

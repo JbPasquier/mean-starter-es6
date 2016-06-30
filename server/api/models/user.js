@@ -13,13 +13,13 @@ const userSchema = new mongoose.Schema({
         default: false
     }
 });
+
+const model = mongoose.model('User', userSchema);
+
 export default class User {
-    constructor() {
-        this.model = mongoose.model('User', userSchema)
-    }
 
     connect(req, res) {
-        this.model.findOne(req.body, {
+        model.findOne(req.body, {
             password: 0
         }, (err, user) => {
             if (err || !user) {
@@ -38,7 +38,7 @@ export default class User {
     }
 
     findAll(req, res) {
-        this.model.find({}, {
+        model.find({}, {
             password: 0
         }, (err, users) => {
             if (err || !users) {
@@ -50,7 +50,7 @@ export default class User {
     }
 
     findById(req, res) {
-        this.model.findById(req.params.id, {
+        model.findById(req.params.id, {
             password: 0
         }, (err, user) => {
             if (err || !user) {
@@ -62,7 +62,7 @@ export default class User {
     }
 
     create(req, res) {
-        this.model.create(req.body,
+        model.create(req.body,
             (err, user) => {
                 if (err || !user) {
                     if (err.code === 11000 || err.code === 11001) {
@@ -76,7 +76,7 @@ export default class User {
     }
 
     update(req, res) {
-        this.model.update({
+        model.update({
             _id: req.params.id
         }, req.body, (err, user) => {
             if (err || !user) {
@@ -88,7 +88,7 @@ export default class User {
     }
 
     delete(req, res) {
-        this.model.findByIdAndRemove(req.params.id, (err) => {
+        model.findByIdAndRemove(req.params.id, (err) => {
             if (err) {
                 res.status(500).send(err.message);
             } else {

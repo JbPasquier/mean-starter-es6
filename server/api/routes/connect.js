@@ -10,6 +10,6 @@ module.exports = (app) => {
         res.sendStatus(200);
     });
 
-    app.post('/login', user.connect.bind(user));
+    app.post('/login', user.connect);
 
 }
