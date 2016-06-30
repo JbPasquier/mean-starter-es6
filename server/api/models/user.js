@@ -1,5 +1,6 @@
 import jsonwebtoken from 'jsonwebtoken';
 import mongoose from 'mongoose';
+import token from '../../token.js';
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -25,7 +26,7 @@ export default class User {
             if (err || !user) {
                 res.sendStatus(403);
             } else {
-                let token = jsonwebtoken.sign(user, 'tokenSecret', {
+                let token = jsonwebtoken.sign(user, token, {
                     expiresIn: "24h"
                 });
                 res.json({

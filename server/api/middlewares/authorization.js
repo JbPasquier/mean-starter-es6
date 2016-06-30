@@ -1,10 +1,11 @@
 import jsonwebtoken from 'jsonwebtoken';
+import token from '../../token.js';
 
 export default {
 
     hasAuthorization: (req, res, next) => {
         if (req.headers.authorization) {
-            jsonwebtoken.verify(req.headers.authorization, 'tokenSecret', (err, decoded) => {
+            jsonwebtoken.verify(req.headers.authorization, token, (err, decoded) => {
                 if (err) {
                     return res.sendStatus(403);
                 } else {
@@ -18,7 +19,7 @@ export default {
 
     isAdministrator: (req, res, next) => {
         if (req.headers.authorization) {
-            jsonwebtoken.verify(req.headers.authorization, 'tokenSecret', (err, decoded) => {
+            jsonwebtoken.verify(req.headers.authorization, token, (err, decoded) => {
                 if (decoded._doc && decoded._doc.isAdmin) {
                     next();
                 } else {
