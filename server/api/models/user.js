@@ -26,13 +26,13 @@ export default class User {
             if (err || !user) {
                 res.sendStatus(403);
             } else {
-                let token = jsonwebtoken.sign(user, token, {
+                let tk = jsonwebtoken.sign(user, token, {
                     expiresIn: "24h"
                 });
                 res.json({
                     success: true,
                     user: user,
-                    token: token
+                    token: tk
                 });
             }
         });

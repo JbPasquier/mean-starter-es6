@@ -10,7 +10,7 @@ import api from './api';
 var app = express();
 app.server = http.createServer(app);
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('./public'));
 app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
