@@ -54,7 +54,6 @@ const loginStatus = ($rootScope, $window, sessionFactory) => {
         sessionFactory.isLogged = isLogged;
     })
 
-
 }
 
 const checkIsConnected = ($q, $http, $location, $window, $rootScope) => {
