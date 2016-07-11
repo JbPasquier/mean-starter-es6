@@ -1,13 +1,37 @@
-# MEAN Starter kit
+# [MEAN](http://mean.io/) Starter kit
 
-## MongoDB
+Backend : Babel es2015
 
-## Express
+Frontend : es2015 native
 
-## Angular
+## MongoDB Express Angular NodeJS
 
-## NodeJS
+### Requirements
+
+-   [Node](https://doc.ubuntu-fr.org/nodejs#depuis_un_ppa)
+-   [MongoDB](https://doc.ubuntu-fr.org/mongodb#installation)
+-   [Nodemon](http://nodemon.io/)
+-   [Bower](https://bower.io/)
+
+### Execution
+
+#### Installation
+
+```bash
+git clone git@github.com:JbPasquier/mean-starter-es6.git
+cd mean-starter-es6
+npm install
+bower install
+```
+
+#### Development
 
 ```bash
 nodemon --exec npm start
+```
+
+#### Production
+
+```bash
+SECRET_TOKEN='secretToken' MONGODB_URI='mongodb://localhost:27017/mean-starter-es6' npm start
 ```
