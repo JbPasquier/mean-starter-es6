@@ -19,7 +19,7 @@ class mainController {
     }
 
     update(todo) {
-        this.todoService.update(todo._id, todo).then(() => {
+        this.todoService.update(todo._id, todo.description).then(() => {
             this.load()
         })
     }
