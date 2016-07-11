@@ -12,19 +12,19 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active" ng-show='vm.isLogged'>
-                    <a href="#/">Todos</a>
+                    <a href="#/"><span class="glyphicon glyphicon-book"></span>&nbsp;Todos</a>
                 </li>
-                <li ng-show='vm.sessionFactory.user.isAdmin'>
-                    <a href="#/">Admin</a>
+                <li class='disabled' ng-show='vm.sessionFactory.user.isAdmin'>
+                    <a href="#/"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Admin</a>
+                </li>
+                <li class='disabled' ng-show='vm.isLogged'>
+                    <a href="#/"><span class="glyphicon glyphicon-user"></span>&nbsp;My account</a>
                 </li>
                 <li ng-show='vm.isLogged'>
-                    <a href="#/">My account</a>
-                </li>
-                <li ng-show='vm.isLogged'>
-                    <a href="" ng-click='vm.logout()'>Sign out</a>
+                    <a href="" ng-click='vm.logout()'><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign out</a>
                 </li>
                 <li class='active' ng-hide='vm.isLogged'>
-                    <a href="#/login">Sign in</a>
+                    <a href="#/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Sign in</a>
                 </li>
             </ul>
         </div>
