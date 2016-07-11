@@ -1,7 +1,7 @@
-class MainController {
+class mainController {
 
     constructor() {
-        this.title = "Welcome !";
+
     }
 
 }

@@ -3,9 +3,14 @@ import mongoose from 'mongoose';
 import token from '../../token.js';
 
 const userSchema = new mongoose.Schema({
-    name: {
+    email: {
         type: String,
         required: true,
+        required: 'Email address is required',
+        validate: [function(email) {
+            return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+        }, 'Please fill a valid email address'],
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
         unique: true
     },
     password: String,
@@ -67,11 +72,18 @@ export default class User {
             (err, user) => {
                 if (err || !user) {
                     if (err.code === 11000 || err.code === 11001) {
-                        err.message = "Username " + req.body.name + " already exist";
+                        err.message = "Email " + req.body.email + " already exist";
                     }
                     res.status(500).send(err.message);
                 } else {
-                    res.json(user);
+                    let tk = jsonwebtoken.sign(user, token, {
+                        expiresIn: "24h"
+                    });
+                    res.json({
+                        success: true,
+                        user: user,
+                        token: tk
+                    });
                 }
             });
     }
@@ -83,7 +95,14 @@ export default class User {
             if (err || !user) {
                 res.status(500).send(err.message);
             } else {
-                res.json(user);
+                let tk = jsonwebtoken.sign(user, token, {
+                    expiresIn: "24h"
+                });
+                res.json({
+                    success: true,
+                    user: user,
+                    token: tk
+                });
             }
         });
     }

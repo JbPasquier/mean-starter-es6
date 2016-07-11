@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+        <div class='text-center'>
+            <h1>Todo List</h1>
+            <h2>Sign in to your account</h2>
+        </div>
+        <form class="form-horizontal" name="formConnect">
+            <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" placeholder="Email" ng-model='vm.email' ng-required='true'>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" placeholder="Password" ng-model='vm.password' ng-required='true'>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button ng-click='vm.login()' ng-disabled="formConnect.$invalid" class="btn btn-primary pull-right">Sign in</button>
+                    <button ng-click='vm.createAccount()' ng-disabled="formConnect.$invalid" class="btn btn-link pull-right">Sign up</button>
+                </div>
+            </div>
+        </form>
+        <div ng-show="(vm.loginMessage)" class="alert" ng-class="{'alert-danger': vm.loginMessage.type == 'error', 'alert-success': vm.loginMessage.type == 'success', 'alert-info': vm.loginMessage.type == 'info'}">
+            <h4>{{vm.loginMessage.title}}</h4>
+            <p>{{vm.loginMessage.message}}</p>
+        </div>
+    </div>
+</div>
