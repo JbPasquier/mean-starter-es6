@@ -1,32 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" ng-app='app'>
     <head>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="assets/img/logo.png">
+
         <title>MEAN Starter ES6</title>
 
         <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
 
-        <link rel="shortcut icon" href="assets/img/logo.png">
-        
     </head>
     <body>
+
         <ng-include src="'views/navbar.html'"></ng-include>
+
         <div class="container-fluid">
             <ng-view></ng-view>
         </div>
+
         <script src="vendor/jquery/dist/jquery.min.js"></script>
         <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
         <script src="vendor/angular/angular.min.js"></script>
         <script src="vendor/angular-route/angular-route.min.js"></script>
+
         <script src="js/factories/sessionFactory.js"></script>
+
         <script src="js/services/userService.js"></script>
+        <script src="js/services/todoService.js"></script>
+
         <script src="js/controllers/mainController.js"></script>
         <script src="js/controllers/navbarController.js"></script>
         <script src="js/controllers/loginController.js"></script>
+
         <script src="js/routes.js"></script>
+
         <script src="js/app.js"></script>
+
     </body>
 </html>

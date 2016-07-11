@@ -1,2 +1,19 @@
-{{isLogged}}
-<h1>Hello world</h1>
+<h2>Create a new todo</h2>
+<form class="form-inline">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Todo" ng-model='vm.todo'>
+    </div>
+    <button ng-click='vm.create()' class="btn btn-default">Add</button>
+</form>
+<h2 ng-show='vm.todos.length>0'>My todos</h2>
+<div class="panel panel-default" ng-repeat='todo in vm.todos | orderBy: "description"'>
+    <div class="panel-body">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Todo" ng-model='todo.description'>
+            </div>
+            <button ng-click='vm.update(todo)' class="btn btn-default">Edit</button>
+            <button ng-click='vm.delete(todo)' class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+</div>

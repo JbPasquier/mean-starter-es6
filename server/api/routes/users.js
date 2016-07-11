@@ -2,22 +2,28 @@ import express from 'express';
 import User from '../models/user.js';
 import Auth from '../middlewares/authorization.js';
 
-const userRouter = express.Router();
+let router = express.Router();
 
 module.exports = (app) => {
 
     var user = new User();
 
-    userRouter.get('/', Auth.isAdministrator, user.findAll);
+    app.get('/loggedin', Auth.hasAuthorization, (req, res, next) => {
+        res.sendStatus(200);
+    });
 
-    userRouter.get('/:id', Auth.isAdministrator, user.findById);
+    app.post('/login', user.connect);
 
-    userRouter.post('/', user.create);
+    router.get('/', Auth.isAdministrator, user.findAll);
 
-    userRouter.put('/:id', Auth.isAdministrator, user.update);
+    router.get('/:id', Auth.isAdministrator, user.findById);
 
-    userRouter.delete('/:id', Auth.isAdministrator, user.delete);
+    router.post('/', user.create);
 
-    app.use('/users', userRouter);
+    router.put('/:id', Auth.isAdministrator, user.update);
+
+    router.delete('/:id', Auth.isAdministrator, user.delete);
+
+    app.use('/users', router);
 
 }

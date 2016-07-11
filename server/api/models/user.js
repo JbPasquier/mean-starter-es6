@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-const model = mongoose.model('User', userSchema);
+let model = mongoose.model('User', userSchema);
 
 export default class User {
 
