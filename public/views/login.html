@@ -25,7 +25,7 @@
             </div>
         </form>
         <div ng-show="(vm.loginMessage)" class="alert" ng-class="{'alert-danger': vm.loginMessage.type == 'error', 'alert-success': vm.loginMessage.type == 'success', 'alert-info': vm.loginMessage.type == 'info'}">
-            <h4>{{vm.loginMessage.title}}</h4>
+            <h4><span class="glyphicon glyphicon-exclamation-sign pull-left"></span>&nbsp;{{vm.loginMessage.title}}</h4>
             <p>{{vm.loginMessage.message}}</p>
         </div>
     </div>
