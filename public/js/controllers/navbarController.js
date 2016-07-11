@@ -6,14 +6,13 @@ class navbarController {
         this.$rootScope = $rootScope;
         this.$location = $location;
 
-        $rootScope.$on('loginStatusChanged', (isLogged) => {
+        $rootScope.$on('loginStatusChanged', (event, isLogged) => {
             this.isLogged = isLogged;
             this.user = sessionFactory.user;
         })
     }
 
     logout() {
-        console.log('logout');
         this.sessionFactory.isLogged = false;
         this.sessionFactory.user = {};
         this.sessionFactory.token = null;

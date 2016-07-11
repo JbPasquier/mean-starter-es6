@@ -48,7 +48,7 @@ const loginStatus = ($rootScope, $window, sessionFactory) => {
         sessionFactory.user = JSON.parse($window.localStorage.getItem('currentUser'));
     }
 
-    $rootScope.$on('loginStatusChanged', (isLogged) => {
+    $rootScope.$on('loginStatusChanged', (event, isLogged) => {
         $window.localStorage.setItem('currentUser', JSON.stringify(sessionFactory.user));
         $window.localStorage.token = sessionFactory.token;
         sessionFactory.isLogged = isLogged;

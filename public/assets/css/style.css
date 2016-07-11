@@ -7,10 +7,10 @@
     border-radius: 0;
     border-bottom: 2px solid black;
 }
-.navbar-icon {
+.navbar-brand img {
     max-height: 100%;
     transition: 0.8s;
 }
-.navbar-icon:hover {
+.navbar-brand:hover img {
     transform: rotate(360deg);
 }
