@@ -13,6 +13,10 @@ Frontend : es2015 native
 -   [Nodemon](http://nodemon.io/)
 -   [Bower](https://bower.io/)
 
+### Auto-install
+
+[Bash script for Ubuntu & OSX](https://gist.github.com/JbPasquier/4857fd80af2d7ae2f987754db5887969)
+
 ### Execution
 
 #### Installation
