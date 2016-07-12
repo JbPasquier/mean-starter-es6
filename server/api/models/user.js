@@ -1,6 +1,12 @@
 import jsonwebtoken from 'jsonwebtoken';
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 import token from '../../token.js';
+
+const hashCode = (s) => s.split("").reduce((a, b) => {
+    a = ((a << 5) - a) + b.charCodeAt(0);
+    a & a
+}, 0);
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -13,34 +19,61 @@ const userSchema = new mongoose.Schema({
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
         unique: true
     },
-    password: String,
+    password: {
+        type: String,
+        required: true
+    },
     isAdmin: {
         type: Boolean,
         default: false
     }
 });
 
+userSchema.methods.comparePassword = function(pwd, cb) {
+    bcrypt.compare(pwd, this.password, function(err, isMatch) {
+        if (err) cb(err);
+        cb(null, isMatch);
+    });
+};
+
 let model = mongoose.model('User', userSchema);
 
 export default class User {
 
     connect(req, res) {
-        model.findOne(req.body, {
-            password: 0
-        }, (err, user) => {
-            if (err || !user) {
-                res.sendStatus(403);
-            } else {
-                let tk = jsonwebtoken.sign(user, token, {
-                    expiresIn: "24h"
-                });
-                res.json({
-                    success: true,
-                    user: user,
-                    token: tk
-                });
-            }
-        });
+        if (!req.body.email) {
+            res.status(400).send('Please enter an email');
+        } else if (!req.body.password) {
+            res.status(400).send('Please enter a password');
+        } else {
+            model.findOne({
+                email: req.body.email
+            }, (err, user) => {
+                if (err || !user) {
+                    res.sendStatus(403);
+                } else {
+                    user.comparePassword(req.body.password, (err, isMatch) => {
+                        if (err) {
+                            res.status(400).send(err);
+                        } else {
+                            if (isMatch) {
+                                user.password = null;
+                                let tk = jsonwebtoken.sign(user, token, {
+                                    expiresIn: "24h"
+                                });
+                                res.json({
+                                    success: true,
+                                    user: user,
+                                    token: tk
+                                });
+                            } else {
+                                res.status(400).send('Incorrect password');
+                            }
+                        };
+                    });
+                };
+            });
+        }
     }
 
     findAll(req, res) {
@@ -68,6 +101,10 @@ export default class User {
     }
 
     create(req, res) {
+        if (req.body.password) {
+            var salt = bcrypt.genSaltSync(10);
+            req.body.password = bcrypt.hashSync(req.body.password, salt);
+        }
         model.create(req.body,
             (err, user) => {
                 if (err || !user) {
