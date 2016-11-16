@@ -8,7 +8,7 @@ function navbarController(sessionFactory, $rootScope, $window, $location) {
     $rootScope.$on('loginStatusChanged', (event, isLogged) => {
         this.isLogged = isLogged;
         this.user = sessionFactory.user;
-    })
+    });
 
     this.logout = () => {
         this.sessionFactory.isLogged = false;
@@ -17,6 +17,6 @@ function navbarController(sessionFactory, $rootScope, $window, $location) {
         this.$rootScope.$emit('loginStatusChanged', false);
         this.isLogged = false;
         this.$location.path('/login');
-    }
+    };
 
 }
