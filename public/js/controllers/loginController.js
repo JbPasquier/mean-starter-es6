@@ -1,14 +1,12 @@
-class loginController {
+function loginController(userService, sessionFactory, $timeout, $location, $rootScope) {
 
-    constructor(userService, sessionFactory, $timeout, $location, $rootScope) {
-        this.userService = userService;
-        this.sessionFactory = sessionFactory;
-        this.$timeout = $timeout;
-        this.$location = $location;
-        this.$rootScope = $rootScope;
-    }
+    this.userService = userService;
+    this.sessionFactory = sessionFactory;
+    this.$timeout = $timeout;
+    this.$location = $location;
+    this.$rootScope = $rootScope;
 
-    login() {
+    this.login = () => {
         this.userService.connect({
             email: this.email,
             password: this.password
@@ -29,7 +27,7 @@ class loginController {
         });
     }
 
-    createAccount() {
+    this.createAccount = () => {
         this.userService.create({
             email: this.email,
             password: this.password
