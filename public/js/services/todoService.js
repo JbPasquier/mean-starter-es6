@@ -1,30 +1,28 @@
-class todoService {
+function todoService($http) {
 
-    constructor($http) {
-        this.$http = $http;
-    }
+    this.$http = $http;
 
-    create(data) {
+    this.create = (data) => {
         return this.$http.post('/api/todos', {
             description: data
         })
     }
 
-    getAll() {
+    this.getAll = () => {
         return this.$http.get('/api/todos')
     }
 
-    getOne(id) {
+    this.getOne = (id) => {
         return this.$http.get('/api/todos/' + id)
     }
 
-    update(id, data) {
+    this.update = (id, data) => {
         return this.$http.put('/api/todos/' + id, {
             description: data
         })
     }
 
-    delete(id) {
+    this.delete = (id) => {
         return this.$http.delete('/api/todos/' + id)
     }
 
