@@ -1,30 +1,28 @@
-class mainController {
+function mainController(todoService) {
 
-    constructor(todoService) {
-        this.todoService = todoService;
-        this.load();
-    }
+    this.todoService = todoService;
+    this.load();
 
-    load() {
+    this.load = () => {
         this.todoService.getAll().then((res) => {
             this.todos = res.data;
         })
     }
 
-    create() {
+    this.create = () => {
         this.todoService.create(this.todo).then(() => {
             this.todo = '';
             this.load()
         })
     }
 
-    update(todo) {
+    this.update = (todo) => {
         this.todoService.update(todo._id, todo.description).then(() => {
             this.load()
         })
     }
 
-    delete(todo) {
+    this.delete = (todo) => {
         this.todoService.delete(todo._id).then(() => {
             this.load()
         })
