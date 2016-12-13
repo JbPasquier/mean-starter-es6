@@ -1,5 +1,5 @@
-const routes = ($routeProvider, $httpProvider) => {
-
+const routes = ($routeProvider, $httpProvider, $locationProvider) => {
+    $locationProvider.html5Mode(false).hashPrefix('');
     $routeProvider
         .when('/', {
             templateUrl: 'views/main.html',
