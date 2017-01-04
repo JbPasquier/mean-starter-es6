@@ -59,11 +59,11 @@ const loginStatus = ($rootScope, $window, sessionFactory) => {
 const checkIsConnected = ($q, $http, $location, $window, $rootScope) => {
     let deferred = $q.defer()
 
-    $http.get('/api/loggedin').success(() => {
+    $http.get('/api/loggedin').then(() => {
         $rootScope.$emit('loginStatusChanged', true);
         // Authenticated
         deferred.resolve()
-    }).error(() => {
+    }).catch(() => {
         $window.localStorage.removeItem('token');
         $window.localStorage.removeItem('currentUser');
         $rootScope.$emit('loginStatusChanged', false);
