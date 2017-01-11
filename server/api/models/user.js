@@ -11,8 +11,7 @@ const hashCode = (s) => s.split("").reduce((a, b) => {
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true,
-        required: 'Email address is required',
+        required: [true, 'Email address is required'],
         validate: [function(email) {
             return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
         }, 'Please fill a valid email address'],
